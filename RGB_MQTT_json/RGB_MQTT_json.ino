@@ -23,7 +23,7 @@ https://github.com/256dpi/arduino-mqtt
 https://wiki.seeedstudio.com/Grove-RGB_LED_Stick-10-WS2813_Mini/
 
 */
-#define BROKER_IP    "192.168.1.81"
+#define BROKER_IP    "192.168.1.72"
 #define DEV_NAME     "mqttdevice"
 #define MQTT_USER    "lafayette"
 #define MQTT_PW      "lafayette"
