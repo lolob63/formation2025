@@ -184,7 +184,7 @@ void setup() {
   Serial.println(F("####################################################################"));
   Serial.println(F("IOT capteur de température sur une carte TTGO t-beam avec module GPS"));
   Serial.println(F("Lycée La Fayette Clermont Ferrand ")); 
-  Serial.println(F("LB 2024"));
+  Serial.println(F("LB 2025"));
   Serial.println(F("####################################################################"));
   Serial.println();
   Wire.begin(21, 22);

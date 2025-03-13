@@ -1,11 +1,9 @@
 /*
 Carte xiao esp32c6 + IMU
 transfert d'une trame JSON des valeurs des accélérations
-{
-  "ax": 7.67,
-  "ay": 0.11,
-  "az": 4.28
-}
+{"ax":7.93,"ay":0.15,"az":3.73,"unit":"m.s-2"}
+Choix de l'unité
+Topic IMU/unit valeur en RAW g ou m.s-2
 
 https://wiki.seeedstudio.com/Grove-Shield-for-Seeeduino-XIAO-embedded-battery-management-chip/
 https://wiki.seeedstudio.com/Seeeduino-XIAO-Expansion-Board/
@@ -18,16 +16,17 @@ https://wiki.seeedstudio.com/Grove-3-Axis_Digital_Accelerometer-16g/
 
 
 
-#define BROKER_IP    "192.168.1.81"
+#define BROKER_IP    "192.168.1.87"
 #define DEV_NAME     "mqttdevice"
 #define MQTT_USER    "lafayette"
 #define MQTT_PW      "lafayette"
 #define TOPIC          "IMU"
-#define TOPICrecep    "IMU/test"
+#define TOPICrecep    "IMU/unit"
 ADXL345 adxl;  //variable adxl is an instance of the ADXL345 library
 
 double ax, ay, az;
 String trameJSON;
+String unit="m.s-2";
 
 
 const char ssid[] = "ORBI50";
@@ -40,15 +39,23 @@ unsigned long lastMillis = 0;
 void read_sensor_data() {
     // Lecture du capteur
     double xyz[3];
-
+    String AX,AY,AZ;
     adxl.getAcceleration(xyz);
     ax = xyz[0];
     ay = xyz[1];
     az = xyz[2];
     //Construction de la trame au format JSON
-    String AX = String(ax*9.8);
-    String AY = String(ay*9.8);
-    String AZ = String(az*9.8);
+    if (unit == "g"){
+      AX = String(ax);
+      AY = String(ay);
+      AZ = String(az);
+    }
+    if (unit =="m.s-2"){
+      AX = String(ax*9.8);
+      AY = String(ay*9.8);
+      AZ = String(az*9.8);
+    }
+
     trameJSON = "{\"ax\":";
     trameJSON += AX;
     trameJSON += ",";
@@ -57,7 +64,10 @@ void read_sensor_data() {
     trameJSON += ",";
     trameJSON += "\"az\":";
     trameJSON += AZ;
-    trameJSON += "}";
+    trameJSON += ",";
+    trameJSON += "\"unit\":\"";
+    trameJSON += unit;
+    trameJSON += "\"}";
     //Serial.print(trameJSON);
     //Serial.println();
 
@@ -85,6 +95,16 @@ void connect() {
 
 void messageReceived(String &topic, String &payload) {
   Serial.println("reception: " + topic + " - " + payload);
+
+  
+  if(payload =="m.s-2") 
+    unit="m.s-2";
+  if(payload == "g"){
+    unit="g";
+    }
+
+    
+
 
   // Note: Do not use the client in the callback to publish, subscribe or
   // unsubscribe as it may cause deadlocks when other things arrive while
