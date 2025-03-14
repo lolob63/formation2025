@@ -5,6 +5,7 @@ transfert d'une trame JSON des valeurs des accélérations
 Choix de l'unité
 Topic IMU/unit valeur en RAW g ou m.s-2
 
+https://wiki.seeedstudio.com/xiao_esp32c6_getting_started/
 https://wiki.seeedstudio.com/Grove-Shield-for-Seeeduino-XIAO-embedded-battery-management-chip/
 https://wiki.seeedstudio.com/Seeeduino-XIAO-Expansion-Board/
 https://wiki.seeedstudio.com/Grove-3-Axis_Digital_Accelerometer-16g/
