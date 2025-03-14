@@ -1,6 +1,14 @@
 /*
 Serial 1 to Serial
-test sur carte arduino Mkr
+test sur carte arduino Mkr du module GPS
+
+https://docs.arduino.cc/hardware/mkr-wifi-1010/
+https://docs.arduino.cc/hardware/mkr-connector-carrier/ 
+https://wiki.seeedstudio.com/Grove-GPS/
+
+Analyse des données sur la liaison uart du GPS
+trame NMEA 
+
 */
 
 
