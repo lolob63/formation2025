@@ -3,7 +3,7 @@ Accélérométre 3axes
 Carte XIAO ESP32C6 + Shield 
 
 API REST 
-curl GET 'http://192.168.1.77/data'
+curl GET 'http://192.168.1.76/data'
 
 https://wiki.seeedstudio.com/Grove-Shield-for-Seeeduino-XIAO-embedded-battery-management-chip/
 https://wiki.seeedstudio.com/Seeeduino-XIAO-Expansion-Board/

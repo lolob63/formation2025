@@ -1,6 +1,6 @@
 /*
 Carte xiao esp32c6 + IMU
-transfert d'une trame JSON des valeurs des accélérations
+transfert d'une trame JSON des valeurs des accélérations en MQTT
 {"ax":7.93,"ay":0.15,"az":3.73,"unit":"m.s-2"}
 Choix de l'unité
 Topic IMU/unit valeur en RAW g ou m.s-2
