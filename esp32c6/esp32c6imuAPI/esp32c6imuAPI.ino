@@ -135,11 +135,18 @@ void getData() {
   add_json_object("aX", ax, "g");
   add_json_object("aY", ay, "g");
   add_json_object("aZ", az, "g");
-  add_json_object("temps", rtc.getLocalEpoch(), "Epoch");
+  add_json_object2("temps", rtc.getLocalEpoch(), "Epoch");
   serializeJson(jsonDocument, buffer);
   server.send(200, "application/json", buffer);
 }
 void add_json_object(char *tag, float value, char *unit) {
+  JsonObject obj = jsonDocument.createNestedObject();
+  obj["type"] = tag;
+  obj["valeur"] = value;
+  obj["unite"] = unit; 
+}
+
+void add_json_object2(char *tag, unsigned long value, char *unit) {
   JsonObject obj = jsonDocument.createNestedObject();
   obj["type"] = tag;
   obj["valeur"] = value;
