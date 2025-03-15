@@ -21,7 +21,6 @@ https://www.printables.com/model/281276-seeed-xiao-expansion-board-base-caver/fi
 #include <Wire.h>
 #include <ADXL345.h>
 //#include <FreeRTOS.h>
-#include <Adafruit_AHTX0.h>
 #include <Adafruit_NeoPixel.h>
 #include <ESP32Time.h>
 
@@ -41,8 +40,7 @@ PCF8563 pcf;
 
 U8X8_SSD1306_128X64_NONAME_HW_I2C u8x8(/* clock=*/SCL, /* data=*/SDA, /* reset=*/U8X8_PIN_NONE);  // OLEDs without Reset of the Display
 
-ADXL345 adxl;  //variable adxl is an instance of the ADXL345 library
-
+ADXL345 adxl;  //instancie l'objet adxl à partir de la librairie ADXL345 
 double ax, ay, az;
 int x, y, z;
 
@@ -188,7 +186,7 @@ void setup() {
   u8x8.setCursor(0, 0);
   u8x8.print("Lycee La Fayette");
   u8x8.setCursor(0, 1);
-  u8x8.print("IMU");
+  u8x8.print(WiFi.localIP());
   //
   adxl.powerOn();
   /*
@@ -236,7 +234,7 @@ void setup() {
   adxl.setInterrupt(ADXL345_INT_FREE_FALL_BIT, 1);
   adxl.setInterrupt(ADXL345_INT_ACTIVITY_BIT, 1);
   adxl.setInterrupt(ADXL345_INT_INACTIVITY_BIT, 1);
-*/
+ */
   setup_task();    
   setup_routing(); 
 }
