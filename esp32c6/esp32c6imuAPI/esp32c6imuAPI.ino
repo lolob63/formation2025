@@ -1,8 +1,10 @@
 /*
+LB 16/03/2025
 Accélérométre 3axes
 Carte XIAO ESP32C6 + Shield 
 
 API REST 
+commandes curl
 curl GET 'http://192.168.1.76/data'
 curl GET 'http://192.168.1.76/aX'
 curl GET 'http://192.168.1.76/aY'

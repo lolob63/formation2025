@@ -17,7 +17,7 @@ https://wiki.seeedstudio.com/Grove-3-Axis_Digital_Accelerometer-16g/
 
 
 
-#define BROKER_IP    "192.168.1.87"
+#define BROKER_IP    "192.168.1.34"
 #define DEV_NAME     "mqttdevice"
 #define MQTT_USER    "lafayette"
 #define MQTT_PW      "lafayette"
