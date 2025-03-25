@@ -61,9 +61,11 @@ http://192.168.1.96/data
 //ESP32Time rtc et NTP;
 ESP32Time rtc(3600);      // offset in seconds GMT+1
 const int decalage = 0;  // la valeur dépend de votre fuseau horaire.  
-
+/*
 const char *SSID = "ORBI50";
-const char *PWD = "modernwater884";
+const char *PWD = "modernwater884";*/
+const char *SSID = "ciscoTSSN2";
+const char *PWD = "btssn@dm1n";
 
 //Sur la carte ESP32S2 SAOLA GPIO is the NeoPixel.
 #define PIN        18 

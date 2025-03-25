@@ -8,16 +8,19 @@ Topic IMU/unit valeur en RAW g ou m.s-2
 https://wiki.seeedstudio.com/xiao_esp32c6_getting_started/
 https://wiki.seeedstudio.com/Grove-Shield-for-Seeeduino-XIAO-embedded-battery-management-chip/
 https://wiki.seeedstudio.com/Seeeduino-XIAO-Expansion-Board/
+
 https://wiki.seeedstudio.com/Grove-3-Axis_Digital_Accelerometer-16g/
 
 */
 #include <ADXL345.h>
 #include <WiFi.h>
 #include <MQTT.h>
+#include <U8x8lib.h>
+#include <Adafruit_NeoPixel.h>
 
 
 
-#define BROKER_IP    "192.168.1.34"
+#define BROKER_IP    "172.21.28.33"
 #define DEV_NAME     "mqttdevice"
 #define MQTT_USER    "lafayette"
 #define MQTT_PW      "lafayette"
@@ -29,13 +32,21 @@ double ax, ay, az;
 String trameJSON;
 String unit="m.s-2";
 
-
+/*
 const char ssid[] = "ORBI50";
 const char pass[] = "modernwater884";
+*/
+const char ssid[] = "ciscoTSSN2";
+const char pass[] = "btssn@dm1n";
+
 WiFiClient net;
 MQTTClient client;
 
 unsigned long lastMillis = 0;
+
+
+U8X8_SSD1306_128X64_NONAME_HW_I2C u8x8(/* clock=*/SCL, /* data=*/SDA, /* reset=*/U8X8_PIN_NONE);  // OLEDs without Reset of the Display
+
 
 void read_sensor_data() {
     // Lecture du capteur
@@ -115,15 +126,23 @@ void messageReceived(String &topic, String &payload) {
 
 void setup() {
   Serial.begin(115200);
-
  
   WiFi.begin(ssid, pass);
-
  
   // Note: Local domain names (e.g. "Computer.local" on OSX) are not supported
   // by Arduino. You need to set the IP address directly.
   client.begin(BROKER_IP,1883, net);
   client.onMessage(messageReceived);
+
+    // ecran
+  u8x8.begin();
+  u8x8.setFlipMode(2);  // set number from 1 to 3, the screen word will rotary 180
+  u8x8.setFont(u8x8_font_chroma48medium8_r);
+  u8x8.setCursor(0, 0);
+  u8x8.print("Lycee La Fayette");
+  u8x8.setCursor(0, 1);
+  u8x8.print(WiFi.localIP());
+  //
   adxl.powerOn();
   /*
   //set activity/ inactivity thresholds (0-255)

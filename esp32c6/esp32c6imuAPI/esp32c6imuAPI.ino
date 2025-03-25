@@ -35,9 +35,13 @@ https://www.printables.com/model/281276-seeed-xiao-expansion-board-base-caver/fi
 //ESP32Time rtc et NTP;
 ESP32Time rtc(3600);      // offset in seconds GMT+1
 const int decalage = 0;  // la valeur dépend de votre fuseau horaire.  
-
+/*
 const char *SSID = "ORBI50";
 const char *PWD = "modernwater884";
+*/
+const char *SSID = "ciscoTSSN2";
+const char *PWD = "btssn@dm1n";
+
 
 WebServer server(80);
 
